@@ -11,12 +11,11 @@ int check_cycle(listint_t *list)
 
 	if (list == NULL)
 		return (0);
-	while (current != NULL && cisfun->next != NULL)
+	while (current != NULL && cisfun !=NULL && cisfun->next != NULL)
 	{
 		cisfun = cisfun->next;
 		current = current->next->next;
-
-		if (current == cisfun)
+		if (cisfun == current)
 			return (1);
 	}
 	return (0);

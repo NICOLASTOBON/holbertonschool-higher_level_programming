@@ -14,7 +14,7 @@ int check_cycle(listint_t *list)
 	while (current != NULL && cisfun->next != NULL)
 	{
 		cisfun = cisfun->next;
-		current->next = current->next;
+		current = current->next->next;
 
 		if (current == cisfun)
 			return (1);

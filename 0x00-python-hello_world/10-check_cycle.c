@@ -6,15 +6,16 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *current = list->next;
+	listint_t *current = list, *cisfun = list;
 
 	if (list == NULL)
 		return (0);
-	while (current != NULL)
+	while (current != NULL && cisfun != NULL)
 	{
-		current = current->next;
+		cisfun = cisfun->next;
+		current->next = current->next;
 
-		if (current == list)
+		if (current == cisfun)
 			return (1);
 	}
 	return (0);

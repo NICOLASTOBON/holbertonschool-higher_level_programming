@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 def uppercase(str):
     str_upper = []
     for idx in range(len(str)):

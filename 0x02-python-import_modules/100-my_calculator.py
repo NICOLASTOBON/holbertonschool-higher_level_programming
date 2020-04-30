@@ -8,17 +8,17 @@ if __name__ == '__main__':
         exit(1)
     else:
         a = sys.argv[1]
-        b = sys.argv[2]
-        c = sys.argv[3]
-        if b in op:
-            if b is op[0]:
-                print("{} {} {} = {}".format(a, op[0], c, add(int(a), int(c))))
-            elif b is op[1]:
-                print("{} {} {} = {}".format(a, op[1], c, sub(int(a), int(c))))
-            elif b is op[2]:
-                print("{} {} {} = {}".format(a, op[2], c, mul(int(a), int(c))))
+        c = sys.argv[2]
+        b = sys.argv[3]
+        if c in op:
+            if c is op[0]:
+                print("{} {} {} = {}".format(a, op[0], b, add(int(a), int(b))))
+            elif c is op[1]:
+                print("{} {} {} = {}".format(a, op[1], b, sub(int(a), int(b))))
+            elif c is op[2]:
+                print("{} {} {} = {}".format(a, op[2], b, mul(int(a), int(b))))
             else:
-                print("{} {} {} = {}".format(a, op[3], c, div(int(a), int(c))))
+                print("{} {} {} = {}".format(a, op[3], b, div(int(a), int(b))))
         else:
             print("Unknown operator. Available operators: +, -, * and /")
             exit(1)

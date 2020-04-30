@@ -2,6 +2,7 @@
 if __name__ == '__main__':
     import sys
     from calculator_1 import add, sub, mul, div
+    op = ['+', '-', '*', '/']
     len_argv = len(sys.argv) - 1
     if len_argv != 3:
         print("Usage: {} <a> <operator> <b>".format(sys.argv[0]))
@@ -10,14 +11,14 @@ if __name__ == '__main__':
         a = sys.argv[1]
         c = sys.argv[2]
         b = sys.argv[3]
-        if c is '+':
-            print("{} + {} = {}".format(a, b, add(int(a), int(b))))
-        elif c is '-':
-            print("{} - {} = {}".format(a, b, sub(int(a), int(b))))
-        elif c is '*':
-            print("{} * {} = {}".format(a, b, mul(int(a), int(b))))
-        elif c is '/':
-            print("{} / {} = {}".format(a, b, div(int(a), int(b))))
+        if c is op[0]:
+            print("{} {} {} = {}".format(a, op[0], b, add(int(a), int(b))))
+        elif c is op[1]:
+            print("{} {} {} = {}".format(a, op[1], b, sub(int(a), int(b))))
+        elif c is op[2]:
+            print("{} {} {} = {}".format(a, op[2], b, mul(int(a), int(b))))
+        elif c is op[3]:
+            print("{} {} {} = {}".format(a, op[3], b, div(int(a), int(b))))
         else:
             print("Unknown operator. Available operators: +, -, * and /")
             sys.exit(1)

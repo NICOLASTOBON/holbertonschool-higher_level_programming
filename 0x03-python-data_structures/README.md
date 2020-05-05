@@ -34,6 +34,6 @@ This directory contains the scripts and files to try the programs that are writt
 
 ## Author
 
-[Nicolas Alvarez Tbon](https://www.linkedin.com/in/nicolas-alvarez-tobon-0a71b11a1/) [:octocat:](https://github.com/NICOLASTOBON)
+[Nicolas Alvarez Tobon](https://www.linkedin.com/in/nicolas-alvarez-tobon-0a71b11a1/) [:octocat:](https://github.com/NICOLASTOBON)
 
 [Twitter](https://twitter.com/NICOLASTOBON)

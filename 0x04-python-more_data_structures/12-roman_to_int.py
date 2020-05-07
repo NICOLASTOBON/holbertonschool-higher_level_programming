@@ -9,13 +9,15 @@ def roman_to_int(roman_string):
         'D':    500,
         'M':    1000,
     }
-    number = 0
-    p = 0
-    leng = len(roman_string)
-    for idx in range(leng - 1, -1, -1):
-        if KEYS[roman_string[idx]] >= p:
-            number += KEYS[roman_string[idx]]
-        else:
-            number -= KEYS[roman_string[idx]]
-        p = KEYS[roman_string[idx]]
-    return number
+    if isinstance(roman_string, str):
+        number = 0
+        p = 0
+        leng = len(roman_string)
+        for idx in range(leng - 1, -1, -1):
+            if KEYS[roman_string[idx]] >= p:
+                number += KEYS[roman_string[idx]]
+            else:
+                number -= KEYS[roman_string[idx]]
+            p = KEYS[roman_string[idx]]
+        return number
+    return 0

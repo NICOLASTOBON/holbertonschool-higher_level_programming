@@ -29,7 +29,7 @@ Higher-level programming ― Python
 
 To use, first download  this repository into your local machine by issuing the following command in your local terminal. 
 ```
-git clone https://github.com/sumin3/holbertonschool-higher_level_programming.git
+git clone https://github.com/NICOLASTOBON/holbertonschool-higher_level_programming.git
 ```
 
 #### Change Directory

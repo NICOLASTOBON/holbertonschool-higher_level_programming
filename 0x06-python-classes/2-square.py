@@ -1,9 +1,13 @@
 #!/usr/bin/python3
+"""Square class"""
 
 
-class Square:
+class Square():
+    """constuctor method"""
 
     def __init__(self, size=0):
+        """Size validation"""
+
         if isinstance(size, int) is False:
             raise TypeError("size must be an integer")
         elif size < 0:

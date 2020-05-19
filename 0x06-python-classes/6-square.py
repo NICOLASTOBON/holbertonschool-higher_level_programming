@@ -59,11 +59,12 @@ class Square():
         if num is 0:
             print("")
         else:
-
+            for _ in range(line[1]):
+                print()
             for _ in range(num):
                 for j in range(num + line[0]):
                     if (j < line[0]):
-                        print(" ", end='')
+                        print("+", end='')
                     else:
                         print("#", end='')
                 print("")

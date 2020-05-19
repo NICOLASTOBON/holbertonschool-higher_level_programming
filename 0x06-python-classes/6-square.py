@@ -22,12 +22,6 @@ class Square():
 
         return self.__size
 
-    @property
-    def position(self):
-        """using property decorator"""
-
-        return self.__position
-
     @size.setter
     def size(self, value):
         """Setter and value validation"""
@@ -39,11 +33,17 @@ class Square():
         else:
             self.__size = value
 
+    @property
+    def position(self):
+        """using property decorator"""
+
+        return self.__position
+
     @position.setter
     def position(self, value):
         """Setter and value validation"""
 
-        if len(value) != 2:
+        if type(value) is not tuple or len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         elif type(value[0]) is not int or type(value[1]) is not int:
             raise TypeError("position must be a tuple of 2 positive integers")

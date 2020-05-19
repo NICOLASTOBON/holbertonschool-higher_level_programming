@@ -3,6 +3,5 @@
 
 
 class Square():
-    def __init__(self):
-        """Initial class"""
-        pass
+    """Initial class"""
+    pass

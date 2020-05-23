@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 """Unittest for max_integer([..])
 """
@@ -6,16 +7,18 @@ max_integer = __import__('6-max_integer').max_integer
 
 
 class TestMaxInteger(unittest.TestCase):
-    """ test integers """
+    """Test for integers"""
 
-    def test_integer(self):
-        """ test integers """
-        self.assertEqual(max_integer([1, 9, 8, 0]), 9)
-        self.assertEqual(max_integer([11, -9, 8, 0]), 11)
-        self.assertEqual(max_integer([-1, -9, -8, -1]), -9)
-        self.assertEqual(max_integer([1, 9, 22, 0]), 22)
-        self.assertEqual(max_integer([1, 9, 8, 10]), 10)
-        self.assertEqual(max_integer([1.2, 9.2, 3, 0]), 9.2)
+    def test_max_integer(self):
+        """Cases"""
+        self.assertEqual(max_integer([6, 7, 9]), 9)
+        self.assertEqual(max_integer([13, -2, -1, -9]), 13)
+        self.assertEqual(max_integer([11, 22, -9]), 22)
+        self.assertEqual(max_integer([-11, -22, -9]), -9)
+        self.assertEqual(max_integer([0, 0, 0, 0]), 0)
+        self.assertEqual(max_integer([13]), 13)
+        self.assertEqual(max_integer([2, 26, 9]), 26)
+        self.assertEqual(max_integer([756980, 21756, -96]), 756980)
         self.assertEqual(max_integer(), None)
         self.assertTrue(max_integer([5, 4, 6]), int)
         self.assertFalse(max_integer([0, 0, 0]), False)

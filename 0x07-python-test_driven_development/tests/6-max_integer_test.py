@@ -23,7 +23,6 @@ class TestMaxInteger(unittest.TestCase):
         self.assertIsInstance(max_integer([5, 4, 6]), int)
         self.assertNotEqual(max_integer([3, 2, 5]), 8)
         self.assertEqual(max_integer([756980, 21756, -96]), 756980)
-        self.assertRaises(TypeError, max_integer([]), None)
         self.assertRaises(TypeError, max_integer, [1, 2, 'Hello'])
 
 

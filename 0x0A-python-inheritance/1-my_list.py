@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Class Mylist"""
+"""
+module for MyList
+"""
 
 
 class MyList(list):

@@ -1,235 +1,190 @@
 #!/usr/bin/python3
-"""Unit testing rectangle"""
+"""
+    file containing Unittest for Rectangle class
+"""
 
 import unittest
-from unittest.mock import patch
-from io import StringIO
 from models.rectangle import Rectangle
 from models.base import Base
-import pep8
 
 
-class TestRectangle(unittest.TestCase):
-    """This class is for testing the Square class"""
+class TestRectangleClass(unittest.TestCase):
+    """ Unittest for Rectangle class"""
 
-    @classmethod
-    def setUpClass(cls):
-        """ set up instances for all tests """
+    a = 7
+    b = 6
+    c = 4
+    r = Rectangle(5, 2)
+    r2 = Rectangle(5, 2, 0, 0, 12)
+    r3 = Rectangle(5, 2)
+    r4 = Rectangle(5, 2, 1, 2)
+    r5 = Rectangle(15, b, 0, 1, 18)
+    r6 = Rectangle(a, b)
+    r7 = Rectangle(5, 2, 0, c, 20)
 
-        Base._Base__nb_objects = 0
-        cls.r1 = Rectangle(10, 10)
-        cls.r2 = Rectangle(5, 5, 5)
-        cls.r3 = Rectangle(1, 2, 3, 4)
-        cls.r4 = Rectangle(5, 6, 7, 8, 9)
+    def test_Rectangle_Creation(self):
+        """ Test to confirm Rectangle was created """
+        self.assertTrue(isinstance(self.r, Rectangle))
+        self.assertTrue(type(self.r2) is Rectangle)
 
-    def test_id(self):
-        """Test to check id's"""
+    def test_inheritance(self):
+        """ test to confirm inheritance"""
+        self.assertTrue(issubclass(Rectangle, Base))
 
-        self.assertEqual(self.r1.id, 1)
-        self.assertEqual(self.r2.id, 2)
-        self.assertEqual(self.r3.id, 3)
-        self.assertEqual(self.r4.id, 9)
+    def test_width_set(self):
+        """" test to confirm proper handling of width"""
+        self.assertEqual(self.r.width, 5)
+        with self.assertRaises(ValueError):
+            r8 = Rectangle(-10, 2)
+        with self.assertRaises(TypeError):
+            r9 = Rectangle("10", 2)
+        with self.assertRaises(TypeError):
+            r10 = Rectangle([10, 2], 2)
+        with self.assertRaises(TypeError):
+            r11 = Rectangle((10, 2), 3)
+        with self.assertRaises(ValueError):
+            r12 = Rectangle(0, 11)
+        with self.assertRaises(TypeError):
+            r13 = Rectangle(10.01, 3)
 
-    def test_validate_attr(self):
-        """Tests to validate error messages of attr"""
-
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
-            r1 = Rectangle(10, "2")
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            r = Rectangle(10, 2)
-            r.width = -10
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
-            r = Rectangle(10, 2)
-            r.x = {}
-        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
-            Rectangle(10, 2, 3, -1)
-
-    def test_height(self):
-        """ test height attribute """
-        self.assertEqual(self.r1.height, 10)
-        self.assertEqual(self.r2.height, 5)
+    def test_height_set(self):
+        """ test to confirm proper handling of height"""
         self.assertEqual(self.r3.height, 2)
-        self.assertEqual(self.r4.height, 6)
+        with self.assertRaises(ValueError):
+            r14 = Rectangle(10, -2)
+        with self.assertRaises(TypeError):
+            r15 = Rectangle(10, "2")
+        with self.assertRaises(TypeError):
+            r16 = Rectangle(10, [10, 2])
+        with self.assertRaises(TypeError):
+            r17 = Rectangle(10, (2, 3))
+        with self.assertRaises(ValueError):
+            r18 = Rectangle(10, 0)
+        with self.assertRaises(TypeError):
+            r19 = Rectangle(10, 3.01)
 
-    def test_x(self):
-        """ test x attribute """
-        self.assertEqual(self.r1.x, 0)
-        self.assertEqual(self.r2.x, 5)
-        self.assertEqual(self.r3.x, 3)
-        self.assertEqual(self.r4.x, 7)
+    def test_x_set(self):
+        """ test to confirm proper handling of x"""
+        self.assertEqual(self.r5.x, 0)
+        with self.assertRaises(ValueError):
+            r20 = Rectangle(10, 2, -1, 0, 12)
+        with self.assertRaises(TypeError):
+            r21 = Rectangle(10, 2, "7", 0, 12)
+        with self.assertRaises(TypeError):
+            r22 = Rectangle(10, 12, [10, 2], 0, 12)
+        with self.assertRaises(TypeError):
+            r23 = Rectangle(10, 11, (2, 3), 0, 12)
+        with self.assertRaises(TypeError):
+            r24 = Rectangle(10, 12, 3.01, 0, 12)
+        self.assertEqual(self.r6.x, 0)
 
-    def test_y(self):
-        """ test y attribute """
-        self.assertEqual(self.r1.y, 0)
-        self.assertEqual(self.r2.y, 0)
-        self.assertEqual(self.r3.y, 4)
-        self.assertEqual(self.r4.y, 8)
+    def test_y_set(self):
+        """ test to confirm proper handling of y"""
+        self.assertEqual(self.r.y, 0)
+        with self.assertRaises(ValueError):
+            r25 = Rectangle(10, 2, 1, -1, 12)
+        with self.assertRaises(TypeError):
+            r26 = Rectangle(10, 2, 7, "0", 12)
+        with self.assertRaises(TypeError):
+            r27 = Rectangle(10, 12, 10, [2, 0], 12)
+        with self.assertRaises(TypeError):
+            r28 = Rectangle(10, 11, 2, (3, 0), 12)
+        with self.assertRaises(TypeError):
+            r29 = Rectangle(10, 12, 3, 5.01, 12)
+        self.assertEqual(self.r7.y, 4)
+
+    def test_id_set(self):
+        """ test to confrim proper handling of id"""
+        self.assertEqual(self.r2.id, 12)
+        self.assertEqual(self.r5.id, 18)
 
     def test_area(self):
-        """ test area method """
-        self.assertEqual(self.r1.area(), 100)
-        self.assertEqual(self.r2.area(), 25)
-        self.assertEqual(self.r3.area(), 2)
-        self.assertEqual(self.r4.area(), 30)
-
-    def test_display(self):
-        """Test display method"""
-
-        r1 = Rectangle(2, 2)
-        expected_output = "##\n##\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            r1.display()
-            self.assertEqual(fake_out.getvalue(), expected_output)
-        r1 = Rectangle(1, 1)
-        expected_output = "#\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            r1.display()
-            self.assertEqual(fake_out.getvalue(), expected_output)
-        r1 = Rectangle(4, 6)
-        expected_output = "####\n####\n####\n####\n####\n####\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            r1.display()
-            self.assertEqual(fake_out.getvalue(), expected_output)
-        r1 = Rectangle(2, 3, 2, 2)
-        expected_output = "\n\n  ##\n  ##\n  ##\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            r1.display()
-            self.assertEqual(fake_out.getvalue(), expected_output)
-
-    def test_str(self):
-        """Test str method"""
-
-        r1 = Rectangle(4, 6, 2, 1, 12)
-        expected_output = "[Rectangle] (12) 2/1 - 4/6\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            print(r1)
-            self.assertEqual(fake_out.getvalue(), expected_output)
-        r2 = Rectangle(3, 7, 11, 13)
-        expected_output = "[Rectangle] (8) 11/13 - 3/7\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            print(r2)
-            self.assertEqual(fake_out.getvalue(), expected_output)
-        r3 = Rectangle(3, 5, 7)
-        expected_output = "[Rectangle] (9) 7/0 - 3/5\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            print(r3)
-            self.assertEqual(fake_out.getvalue(), expected_output)
-        r4 = Rectangle(3, 5)
-        expected_output = "[Rectangle] (10) 0/0 - 3/5\n"
-        with patch('sys.stdout', new=StringIO()) as fake_out:
-            print(r4)
-            self.assertEqual(fake_out.getvalue(), expected_output)
+        """ test to confirm proper handling of area"""
+        self.assertTrue(self.r.area, 10)
+        self.assertTrue(self.r2.area, 10)
+        self.assertTrue(self.r3.area, 10)
+        self.assertTrue(self.r4.area, 10)
+        self.assertTrue(self.r5.area, 90)
+        self.assertTrue(self.r6.area, 42)
 
     def test_update(self):
-        """Test update method"""
+        """ test to confirm proper handling of update"""
+        r30 = Rectangle(5, 2, 0, 0, 65)
+        self.assertEqual(r30.id, 65)
+        r30.update(70)
+        self.assertEqual(r30.id, 70)
+        r30.update(x=1, y=2)
+        self.assertEqual(r30.x, 1)
+        self.assertEqual(r30.y, 2)
+        r40 = Rectangle(5,2)
+        with self.assertRaises(TypeError):
+            r40.update(5, "10")
+        with self.assertRaises(ValueError):
+            r40.update(5, -1)
+        with self.assertRaises(TypeError):
+            r40.update(5, 4, "10")
+        with self.assertRaises(ValueError):
+            r40.update(5, 4, -1)
+        with self.assertRaises(TypeError):
+            r40.update(5, 4, 3, "1")
+        with self.assertRaises(ValueError):
+            r40.update(5, 4, 3, -1)
+        with self.assertRaises(TypeError):
+            r40.update(5, 4, 6, 7, "10")
+        with self.assertRaises(ValueError):
+            r40.update(5, 4, 5, 3, -1)
 
-        r1 = Rectangle(10, 10, 10, 10)
-        r1.update(89)
-        self.assertEqual(r1.id, 89)
+    def test_dictionary(self):
+        """ test to confirm proper handling of dictionary"""
+        r31 = Rectangle(5, 2, 0, 0, 90)
+        l = r31.to_dictionary()
+        self.assertTrue(type(l) is dict)
 
-        r1.update(89, 2)
-        self.assertEqual(r1.id, 89)
-        self.assertEqual(r1.width, 2)
+    def test_to_json_string(self):
+        """ test to json string"""
+        r42 = Rectangle(15, 7)
+        r45 = Rectangle(5, 2)
+        l1 = r42.to_dictionary()
+        l2 = r45.to_dictionary()
+        json_dictionary = Base.to_json_string([l1, l2])
+        self.assertTrue(type(json_dictionary) is str)
 
-        r1.update(89, 2, 3)
-        self.assertEqual(r1.id, 89)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
+    def test_to_json_file(self):
+        """ test save to file"""
+        import os.path
+        r52 = Rectangle(5, 2)
+        r65 = Rectangle(5, 3)
+        Rectangle.save_to_file([r52, r65])
+        self.assertTrue(os.path.isfile("Rectangle.json"))
 
-        r1.update(89, 2, 3, 4)
-        self.assertEqual(r1.id, 89)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.x, 4)
+    def test_from_json_string(self):
+        """ test from json string"""
+        r77 = Rectangle(5, 2)
+        r78 = Rectangle(5, 2)
+        d1 = r77.to_dictionary()
+        d2 = r78.to_dictionary()
+        list_input = Rectangle.to_json_string([d1, d2])
+        list_output = Rectangle.from_json_string(list_input)
+        self.assertTrue(type(list_input) is str)
+        self.assertTrue(type(list_output) is list)
 
-        r1.update(89, 2, 3, 4, 5)
-        self.assertEqual(r1.id, 89)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.x, 4)
-        self.assertEqual(r1.y, 5)
+    def test_create_method(self):
+        """test create method for instance"""
+        r88 = Rectangle(5, 2)
+        d3 = r88.to_dictionary()
+        r89 = Rectangle.create(**d3)
+        self.assertIsInstance(r89, Rectangle)
+        self.assertIsNot(r88, r89)
 
-        r1.update(id=1)
-        self.assertEqual(r1.id, 1)
-
-        r1.update(width=2)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r1.width, 2)
-
-        r1.update(height=3)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-
-        r1.update(x=5)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.x, 5)
-
-        r1.update(y=7)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.x, 5)
-        self.assertEqual(r1.y, 7)
-
-        r1.update(2, 4, 6, 8, 10, id=3, width=5, height=7, x=9, y=11)
-        self.assertEqual(r1.id, 2)
-        self.assertEqual(r1.width, 4)
-        self.assertEqual(r1.height, 6)
-        self.assertEqual(r1.x, 8)
-        self.assertEqual(r1.y, 10)
-
-    def test_to_dictionary(self):
-        """Test to_dictionary method"""
-
-        r1 = Rectangle(10, 2, 1, 9)
-        r1_dictionary = r1.to_dictionary()
-        dictionary = {'x': 1, 'y': 9, 'id': 11, 'height': 2, 'width': 10}
-        self.assertEqual(r1_dictionary, dictionary)
-        self.assertEqual(type(r1_dictionary), dict)
-
-        r2 = Rectangle(3, 5, 7)
-        r2_dictionary = r2.to_dictionary()
-        dictionary = {'x': 7, 'y': 0, 'id': 12, 'height': 5, 'width': 3}
-        self.assertEqual(r2_dictionary, dictionary)
-        self.assertEqual(type(r2_dictionary), dict)
-
-        r3 = Rectangle(7, 11)
-        r3_dictionary = r3.to_dictionary()
-        dictionary = {'x': 0, 'y': 0, 'id': 13, 'height': 11, 'width': 7}
-        self.assertEqual(r3_dictionary, dictionary)
-        self.assertEqual(type(r3_dictionary), dict)
-
-
-class TestRectanglepep8(unittest.TestCase):
-    """Validate pep8"""
-
-    def test_pep8(self):
-        """test for base file and test_base file pep8"""
-        style = pep8.StyleGuide(quiet=True)
-        rectangle = "models/rectangle.py"
-        test_rectangle = "tests/test_models/test_rectangle.py"
-        result = style.check_files([rectangle, test_rectangle])
-        self.assertEqual(result.total_errors, 0)
-
-
-class TestDocs(unittest.TestCase):
-    """test docstrings for rectangle and test_rectangle files"""
-
-    def test_module(self):
-        """check module docstrings"""
-        self.assertTrue(len(Rectangle.__doc__) > 0)
-
-    def test_class(self):
-        """check class docstrings"""
-        self.assertTrue(len(Rectangle.__doc__) > 0)
-
-    def test_method(self):
-        """check method docstrings"""
-        for func in dir(Rectangle):
-            self.assertTrue(len(func.__doc__) > 0)
+    def test_load_from_file(self):
+        """ test to check load from file"""
+        r95 = Rectangle(4, 5)
+        r99 = Rectangle(9, 8)
+        Rectangle.save_to_file([r95, r99])
+        list_of_instances = Rectangle.load_from_file()
+        self.assertTrue(type(list_of_instances) is list)
+        for i in list_of_instances:
+            self.assertIsInstance(i, Rectangle)
 
 
 if __name__ == "__main__":

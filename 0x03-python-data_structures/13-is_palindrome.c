@@ -40,14 +40,14 @@ int check_palindrome(int *array, int len)
 	{
 		if (array[i] == array[j])
 			continue;
-		else if (array[i] != array[j])
-			break;
-	}
-	if (array[i] != array[j])
-	{
-		free(array);
-		return (0);
-	}
-	free(array);
-	return (1);
+			else if (array[i] != array[j])
+            break;
+    }
+    if (array[i] != array[j])
+    {
+        free(array);
+        return (0);
+    }
+    free(array);
+    return (1);
 }

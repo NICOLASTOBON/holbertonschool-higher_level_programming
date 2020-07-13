@@ -5,7 +5,6 @@
 def pascal_triangle(n):
     """ Pascal's Triangle """
     pascal = []
-
     if n > 0:
         temp = []
         for line in range(1, n + 1):

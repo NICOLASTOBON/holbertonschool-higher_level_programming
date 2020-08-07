@@ -19,9 +19,9 @@ if __name__ == "__main__":
         charset="utf8"
     )
     cur = my_db.cursor()
-    cur.execute("SELECT cities.name " + "FROM cities " +
-                "JOIN states ON cities.state_id = states.id " +
-                "WHERE states.name=%s ORDER BY cities.id ASC;", (state_name,))
+    cur.execute("""SELECT cities.name FROM cities
+                JOIN states ON cities.state_id = states.id
+                WHERE states.name=%s ORDER BY cities.id ASC;""", (state_name,))
 
     res = cur.fetchall()
     print(", ".join(i[0] for i in res))

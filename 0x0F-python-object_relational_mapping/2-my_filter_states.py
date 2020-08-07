@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     cur = my_db.cursor()
     cur.execute(
-        "SELECT * FROM states WHERE name REGEXP '{}' ORDER BY id ASC;"
+        "SELECT * FROM states WHERE name='{}' ORDER BY id ASC;"
         .format(state_name)
         )
 

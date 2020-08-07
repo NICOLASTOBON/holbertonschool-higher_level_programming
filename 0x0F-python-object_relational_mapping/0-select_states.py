@@ -18,7 +18,7 @@ if __name__ == "__main__":
         charset="utf8"
         )
     cur = my_db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    cur.execute("SELECT * FROM states ORDER BY id ASC;")
     for state in cur.fetchall():
         print(state)
     cur.close

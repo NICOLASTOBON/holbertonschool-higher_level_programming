@@ -16,7 +16,8 @@ if __name__ == "__main__":
         port=3306,
         user=username,
         passwd=password,
-        db=name_db
+        db=name_db,
+        charset="utf8"
     )
 
     cur = my_db.cursor()

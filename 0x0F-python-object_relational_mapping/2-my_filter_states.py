@@ -26,7 +26,8 @@ if __name__ == "__main__":
         .format(state_name)
         )
 
-    for state in cur.fetchall():
+    get_states = cur.fetchall()
+    for state in get_states:
         print(state)
 
     cur.close

@@ -20,7 +20,8 @@ if __name__ == "__main__":
 
     cur = my_db.cursor()
     cur.execute("SELECT * FROM states WHERE name REGEXP '^N' ORDER BY id ASC;")
-    for state in cur.fetchall():
+    get_states = cur.fetchall()
+    for state in get_states:
         print(state)
     cur.close
     my_db.close

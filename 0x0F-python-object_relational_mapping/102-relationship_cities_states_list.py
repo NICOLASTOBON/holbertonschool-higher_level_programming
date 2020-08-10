@@ -23,6 +23,6 @@ if __name__ == "__main__":
     session = Session()
 
     cts = session.query(City).order_by(City.id).all()
-    
+
     for ct in cts:
         print('{}: {} -> {}'.format(ct.id, ct.name, ct.state.name))

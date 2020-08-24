@@ -11,7 +11,7 @@ if __name__ == "__main__":
     res = requests.post('http://0.0.0.0:5000/search_user', data)
     if 'application/json' == res.headers.get('content-type'):
         if res.json():
-            print('[{}] {}'.format(res.json()['id'], res.json()['name']))
+            print('[{}] {}'.format(res.json().get('id'), res.json().get('name')))
         else:
             print('No result')
     else:

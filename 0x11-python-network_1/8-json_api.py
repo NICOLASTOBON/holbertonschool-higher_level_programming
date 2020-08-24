@@ -6,10 +6,10 @@ import requests
 
 if __name__ == "__main__":
     data = {'q': ''}
-    if sys.argv[1] is None:
+    if len(sys.argv) > 1:
         data['q'] = sys.argv[1]
     res = requests.post('http://0.0.0.0:5000/search_user', data)
-    if 'json' not in res.headers.get('content-type'):
+    if 'json' in res.headers.get('content-type'):
         if res.json():
             print('[{}] {}'.format(
                 res.json().get('id'), res.json().get('name')))

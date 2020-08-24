@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """  Python script that fetch url """
 
-import urllib.request as url
+import urllib.request
 
 
 if __name__ == "__main__":
-    with url.urlopen('https://intranet.hbtn.io/status') as response:
+    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
         status = response.read()
         print('Body response:')
         print('\t - type: {}'.format(type(status)))

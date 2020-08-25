@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""  script that takes 2 arguments in order to solve this challenge """
+""" script that takes 2 arguments in order to solve this challenge """
 
 import requests
 from sys import argv
@@ -12,8 +12,8 @@ if __name__ == "__main__":
     res = response.json()
 
     i = 0
-    while i < 9:
-        print(
-            res[i].get('sha'),
-            res[i].get('commit').get('author').get('name'))
+    for r in res:
+        if i > 9:
+            break
+        print(r.get('sha') + ': ' + r.get('commit').get('author').get('name'))
         i += 1

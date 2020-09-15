@@ -2,4 +2,10 @@
 
 const value = process.argv.length;
 
-console.log(value >= 3 ? 'Argument found' : 'No argument');
+if (value < 3) {
+  console.log('No argument');
+} else if (value === 3) {
+  console.log('Argument found');
+} else {
+  console.log('Arguments found');
+}

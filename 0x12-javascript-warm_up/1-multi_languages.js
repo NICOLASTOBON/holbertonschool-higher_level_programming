@@ -1,6 +1,4 @@
 #!/usr/bin/node
 const arr = ['C is fun', 'Python is cool', 'Javascript is amazing'];
 
-for (const text of arr) {
-  console.log(text);
-}
+arr.forEach(text => console.log(text));

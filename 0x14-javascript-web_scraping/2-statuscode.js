@@ -2,8 +2,7 @@
 const request = require('request');
 const args = process.argv;
 
-request
-    .get(args[2])
-    .on('response', (response) => {
-        console.log('code: ', response.statusCode)
-    });
+request(args[2], (err, response) => {
+  if (err) throw console.log(err);
+  console.log('code: ', response.statusCode);
+});
